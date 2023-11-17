@@ -1,0 +1,72 @@
+/* info */
+
+#contents {
+  width: 1024px;
+  height: 500px;
+  position: relative;
+}
+
+#detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 100%;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+}
+
+/* 제목 박스*/
+.title-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
+  border-bottom: 3px solid black;
+}
+
+/*내용 박스*/
+.content-box {
+  height: 200px;
+}
+
+/*내용 박스 안 text*/
+#detail-content {
+  line-height: 32px;
+}
+
+/*중요 체크상자 박스*/
+.important-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  right: 40px;
+  top: 45px;
+}
+
+/*완료날짜 박스*/
+.deadline-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: 3px solid black;
+  padding: 20px 0;
+}
+
+/*버튼 박스*/
+.active-box {
+  display: flex;
+  gap: 30px;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+/*라벨*/
+.detail-label {
+  font-size: 20px;
+  font-weight: bold;
+}

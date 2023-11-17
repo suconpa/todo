@@ -1,0 +1,109 @@
+/*전체 컨테이너*/
+#regist-contents {
+  width: 1024px;
+  height: 500px;
+  position: relative;
+}
+/*폼 양식 컨테이너*/
+#regist-todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 100%;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #fff;
+
+  border-radius: 10px;
+  position: relative;
+}
+
+/* 등록하기 라벨 공통 속성*/
+.regist-register-label {
+  font-size: 20px;
+  font-weight: bold;
+}
+.regist-register-input {
+  padding: 10px;
+  border: none;
+}
+
+/*제목*/
+.regist-title-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
+  border-bottom: 3px solid black;
+}
+
+#regist-input-title {
+  width: 80%;
+}
+
+/*내용*/
+.regist-content-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#regist-textarea-content {
+  border: none;
+  padding: 10px;
+  height: 200px;
+  outline: none;
+}
+
+/*완료날짜*/
+.regist-deadline-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: 3px solid black;
+  padding: 20px 0;
+}
+
+/*중요 체크박스*/
+.regist-important-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  right: 40px;
+  top: 45px;
+}
+
+.regist-label-important {
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+}
+
+/*별표모양 체크박스 아이콘 설정*/
+/*체크 될 때*/
+#regist-input-important:checked + span.regist-check-true::before {
+  content: "\f005";
+  font-family: "Font Awesome 5 Free";
+  color: var(--star-color);
+}
+/*체크 안 될때*/
+span.regist-check-true::before {
+  content: "\f005";
+  font-family: "Font Awesome 5 Free";
+  color: var(--gray-color);
+}
+/*별표 체크박스 없애기*/
+#regist-input-important,
+#regist-input-important:checked {
+  display: none;
+}
+
+/*버튼 박스*/
+.regist-active-box {
+  display: flex;
+  gap: 30px;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}

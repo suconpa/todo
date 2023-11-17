@@ -1,0 +1,48 @@
+/* Item */
+
+/*아이템 항목 박스*/
+.todo-item {
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin: 24px 0;
+}
+
+/*중요(별)버튼*/
+.todo-item--important-button {
+  position: relative;
+  bottom: -2px;
+  border: none;
+  width: 24px;
+  height: 24px;
+  background: url("./../img/star.svg") no-repeat;
+}
+
+/*인풋 체크박스 태그 */
+.todo-item--checkbox {
+  position: absolute;
+  left: 32px;
+}
+
+/*상세페이지 링크 태그*/
+.todo-item--todoInfo-link {
+  position: absolute;
+  left: 64px;
+  top: -1px;
+}
+
+/*삭제 아이콘*/
+.todo-item--delete-button {
+  display: block;
+  background: url("./../img/garbage.svg") no-repeat;
+  width: 21px;
+  height: 21px;
+  object-fit: cover;
+  border: none;
+}
+
+.fill {
+  background: url("./../img/star--fill.svg") no-repeat;
+}

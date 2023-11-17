@@ -1,0 +1,252 @@
+/* // 전체 css */
+@import './global.css';
+
+/* regist */
+/*전체 컨테이너*/
+#contents {
+  width: 1024px;
+  height: 500px;
+  position: relative;
+}
+/*폼 양식 컨테이너*/
+#todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 100%;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+}
+
+/* 등록하기 라벨 공통 속성*/
+.register-label {
+  font-size: 20px;
+  font-weight: bold;
+}
+.register-input {
+  padding: 10px;
+  border: none;
+}
+/* .register-button {
+  background-color: var(--button-color);
+  padding: 10px 20px;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+
+  font-size: 20px;
+  font-weight: 600;
+} */
+
+/*제목*/
+.title-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
+  border-bottom: 3px solid black;
+}
+
+#input-title {
+  width: 80%;
+}
+
+/*내용*/
+.content-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#textarea-content {
+  border: none;
+  padding: 10px;
+  height: 200px;
+  outline: none;
+}
+
+/*완료날짜*/
+.deadline-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: 3px solid black;
+  padding: 20px 0;
+}
+
+/*중요 체크박스*/
+.important-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  right: 40px;
+  top: 45px;
+}
+
+.label-important {
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+}
+
+/*별표모양 체크박스 아이콘 설정*/
+/*체크 될 때*/
+#input-important:checked + span.check-true::before {
+  content: '\f005';
+  font-family: 'Font Awesome 5 Free';
+  color: var(--star-color);
+}
+/*체크 안 될때*/
+span.check-true::before {
+  content: '\f005';
+  font-family: 'Font Awesome 5 Free';
+  color: var(--gray-color);
+}
+/*별표 체크박스 없애기*/
+#input-important,
+#input-important:checked {
+  display: none;
+}
+
+/*버튼 박스*/
+.active-box {
+  display: flex;
+  gap: 30px;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+/* list */
+.todo-list-empty {
+  text-align: center;
+  padding: 5px 0;
+}
+
+.active-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px auto;
+}
+
+.common-button.registButton {
+  /* position: absolute;
+  right: 12px;
+  top: -80px; */
+  padding: 12px;
+  background-color: var(--star-color);
+}
+
+.filter-list {
+  width: 600px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  /* position: absolute;
+  left: 12px;
+  top: -80px; */
+}
+
+.todo-container {
+  width: 1024px;
+  min-height: 315px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 32px;
+  font-weight: bold;
+}
+
+.todo-list-all {
+  max-height: 436px;
+  overflow-y: scroll;
+}
+
+.important-list {
+  display: none;
+  border-bottom: 2px solid #000;
+}
+
+.todo-container__check-list {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.todo-container__check-list button {
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.todolist__item {
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin: 24px 0;
+}
+
+.todolist__item--important-button {
+  position: relative;
+  bottom: -2px;
+  border: none;
+  width: 24px;
+  height: 24px;
+  background: url('./../img/star.svg') no-repeat;
+}
+
+.todolist__item--checkbox {
+  position: absolute;
+  left: 32px;
+}
+
+.todolist__item--todo-info-link {
+  position: absolute;
+  left: 64px;
+  top: -1px;
+}
+
+.fill {
+  background: url('./../img/star--fill.svg') no-repeat;
+}
+
+.todolist__item--delete-button {
+  display: block;
+  background: url('./../img/garbage.svg') no-repeat;
+  width: 21px;
+  height: 21px;
+  object-fit: cover;
+}
+
+/* info */
+#detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 100%;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+}
+.detail-content-box {
+  height: 200px;
+}
+
+#detail-content {
+  line-height: 32px;
+}
+
+/* update */

@@ -1,0 +1,109 @@
+/*전체 컨테이너*/
+#update-contents {
+  width: 1024px;
+  height: 500px;
+  position: relative;
+}
+/*폼 양식 컨테이너*/
+#update-todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 100%;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #fff;
+
+  border-radius: 10px;
+  position: relative;
+}
+
+/* 등록하기 라벨 공통 속성*/
+.update-register-label {
+  font-size: 20px;
+  font-weight: bold;
+}
+.update-register-input {
+  padding: 10px;
+  border: none;
+}
+
+/*제목*/
+.update-title-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
+  border-bottom: 3px solid black;
+}
+
+#update-input-title {
+  width: 80%;
+}
+
+/*내용*/
+.update-content-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#update-textarea-content {
+  border: none;
+  padding: 10px;
+  height: 200px;
+  outline: none;
+}
+
+/*완료날짜*/
+.update-deadline-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: 3px solid black;
+  padding: 20px 0;
+}
+
+/*중요 체크박스*/
+.update-important-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  right: 40px;
+  top: 45px;
+}
+
+.update-label-important {
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+}
+
+/*별표모양 체크박스 아이콘 설정*/
+/*체크 될 때*/
+#update-input-important:checked + span.update-check-true::before {
+  content: "\f005";
+  font-family: "Font Awesome 5 Free";
+  color: var(--star-color);
+}
+/*체크 안 될때*/
+span.update-check-true::before {
+  content: "\f005";
+  font-family: "Font Awesome 5 Free";
+  color: var(--gray-color);
+}
+/*별표 체크박스 없애기*/
+#update-input-important,
+#update-input-important:checked {
+  display: none;
+}
+
+/*버튼 박스*/
+.update-active-box {
+  display: flex;
+  gap: 30px;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
