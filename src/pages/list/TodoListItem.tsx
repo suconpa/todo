@@ -1,49 +1,47 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import TodoItem from "./TodoItem";
+import { deleteTodoItem, getTodoList } from "../../api/useFetch";
 
-import "./TodoListItem.css"
+const TodoListItem: React.FC = () => {
+  const [todoItem, setTodoItem] = useState<TodoList>();
+  const [updateTodo, setUpdateTodo] = useState<TodoList>();
 
-export interface ItemProps {
-  key: number;
-  isCompleteCheck: (
-    e: React.ChangeEvent<HTMLInputElement>,
-    important: boolean,
-    _id: number
-  ) => void;
-  deleteItem: (
-    _id: number,
-    important: boolean
-  ) => void;
-  importantItem: (
-    btn: React.MouseEvent<HTMLButtonElement>,
-    _id: number,
-    important: boolean
-  ) => void;
-  todo: TodoItem;
-}
+  useEffect(() => {
+    async function todoData() {
+      const response = await getTodoList();
+      setTodoItem(response!.data.items);
+      console.log(response, "부모");
+    }
 
-const TodoListItem: React.FC<ItemProps> = ({ isCompleteCheck, deleteItem, importantItem, todo }) => {
+    todoData();
+  }, [updateTodo]);
+
+  const deleteHandler = (id: number) => {
+    const isConfirmed = confirm("삭제하시겠습니까?");
+
+    if (isConfirmed) {
+      deleteTodoItem(id);
+      const upDateData = todoItem!.filter((todoData) => {
+        return todoData._id !== id;
+      });
+      setUpdateTodo(upDateData);
+    } else {
+      alert("삭제가 취소 되었습니다");
+    }
+  };
+
   return (
-    <li className="todo-item">
-      <button
-        type="button"
-        className={`todo-item--important-button ${todo.important ? 'fill' : ''}`}
-        onClick={(e) => importantItem(e, todo._id, todo.important)}
-      ></button>
-      <input
-        type="checkbox"
-        checked={todo.done}
-        onChange={(e) => isCompleteCheck(e, todo.important, todo._id)}
-        className="todo-item--checkbox"
-      />
-      <Link to={`/info?_id=${todo._id}`} className="todo-item--todoInfo-link">
-        {todo.title}
-      </Link>
-      <button
-        className="todo-item--delete-button"
-        onClick={() => deleteItem(todo._id, todo.important)}
-      ></button>
-    </li>
+    <>
+      {todoItem?.map((el: TodoItem) => {
+        return (
+          <TodoItem
+            key={el._id}
+            todoData={el}
+            onClick={() => deleteHandler(el._id)}
+          />
+        );
+      })}
+    </>
   );
 };
 

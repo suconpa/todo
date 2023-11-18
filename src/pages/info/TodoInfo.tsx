@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 
 import BASE_URL from "../../api/BaseUrl";
@@ -16,6 +16,8 @@ const TodoInfo: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
+  const test = useParams();
+  console.log(test);
   const _id = params.get("_id");
 
   const [todoData, setTodoData] = useState({
@@ -30,7 +32,7 @@ const TodoInfo: React.FC = () => {
     const getDetailTodo = async () => {
       const response = await getTodoItem(_id);
 
-      const getDataItem = response.data.item;
+      const getDataItem = response!.data.item;
 
       setTodoData({
         title: getDataItem.title,

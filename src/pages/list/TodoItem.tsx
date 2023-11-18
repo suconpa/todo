@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { FormControlLabel, Checkbox, Switch } from "@mui/material";
-import { getTodoList } from "../../api/useFetch";
+import { deleteTodoItem, getTodoList } from "../../api/useFetch";
 import ButtonSu from "../../layout/ButtonSu";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface TodoItemProps {
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  children: React.ReactNode;
-  onChange: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  // onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+
+  onClick?: () => void;
+  children?: React.ReactNode;
+  onChange?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  todoData: TodoItem;
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ onClick, onChange }) => {
-
-  const [todoDataAll, setTodoDataAll] = useState<TodoList>();
+const TodoItem: React.FC<TodoItemProps> = ({ todoData, onClick }) => {
   const [switchChecked, setSwitchChecked] = useState<boolean>(false);
 
   const changeHandler = () => {
@@ -20,36 +21,23 @@ const TodoItem: React.FC<TodoItemProps> = ({ onClick, onChange }) => {
     console.log(!switchChecked);
   };
 
-  useEffect(() => {
-    const getTodoListAll = async () => {
-      const response = await getTodoList();
-      setTodoDataAll(response?.data.items);
-      console.log(response);
-    };
-    getTodoListAll();
-  }, []);
+  // const deleteHandler = () => {
+  //   deleteTodoItem(todoData._id);
+  //   console.log({ todoData }, "자식");
+  // };
 
-  const deleteHandler = () => {};
+  const HandleClick = () => {
+    naviagte(`/Todoinfo/${todoData._id}`);
+  };
 
   return (
     <>
-      {todoDataAll?.map((el) => {
-        return (
-          <div>
-            <Switch color="warning" defaultChecked onChange={changeHandler} />
-            <FormControlLabel
-              control={<Checkbox defaultChecked />}
-              onChange={onChange}
-            />
-            <button onClick={onClick}>{el.title}</button>
-            <ButtonSu
-              color="red"
-              children={"삭제하기"}
-              onClick={deleteHandler}
-            />
-          </div>
-        );
-      })}
+      <div>
+        <Switch color="warning" defaultChecked onChange={changeHandler} />
+        <FormControlLabel control={<Checkbox defaultChecked />} />
+        <button onClick={HandleClick}>{todoData.title}</button>
+        <ButtonSu color="red" children={"삭제하기"} onClick={onClick} />
+      </div>
     </>
   );
 };

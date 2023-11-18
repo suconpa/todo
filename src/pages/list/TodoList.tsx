@@ -253,24 +253,18 @@ const TodoList: React.FC = () => {
     navigate(`todoinfo/${_id}`);
   };
 
+  const moveHandler = () => {
+    navigate("/regist");
+  };
+
   return (
     <>
       <ButtonSu color="#fff" children={"전체보기"} />
       <ButtonSu color="#fff" children={"중요"} />
       <ButtonSu color="#fff" children={"미완료"} />
       <ButtonSu color="#fff" children={"완료"} />
-      <ButtonSu color="#fff" children={"등록"} />
-      {todoDataAll?.map((el: TodoItem) => {
-        return (
-          <div>
-            <Switch color="warning" defaultChecked />
-            <FormControlLabel control={<Checkbox defaultChecked />} />
-            <button onClick={() => clickHandler(el)}>{el.title}</button>
-
-            <ButtonSu color="red" children={"삭제하기"} />
-          </div>
-        );
-      })}
+      <ButtonSu color="#fff" children={"등록"} onClick={moveHandler} />
+      <TodoListItem />
     </>
   );
 };

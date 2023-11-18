@@ -3,6 +3,14 @@ import axios from "axios";
 
 // const BaseUrl = "http://localhost:33088/api";
 
+interface Body {
+  title: string;
+  content: string;
+  deadline: string;
+  important: boolean;
+  done: boolean;
+}
+
 const instant = axios.create({
   baseURL: BaseUrl,
   headers: {
@@ -21,9 +29,9 @@ const getTodoList = async () => {
 };
 
 //할일 등록하기
-const postTodoItem = async () => {
+const postTodoItem = async (body: Body) => {
   try {
-    const response = await instant.post(`/todolist`);
+    const response = await instant.post(`/todolist`, body);
     return response;
   } catch (error) {
     console.error("postTodoItem에러");
@@ -43,7 +51,7 @@ const getTodoItem = async (_id: string | null) => {
 // 할일 수정하기
 const patchTodoItem = async (_id: number) => {
   try {
-    const response = await instant.get(`/todolist/${_id}`);
+    const response = await instant.delete(`/todolist/${_id}`);
     return response;
   } catch (error) {
     console.error("patchTodoItem에러");
@@ -51,9 +59,9 @@ const patchTodoItem = async (_id: number) => {
 };
 
 //할일 삭제 하기
-const deleteTodoItem = async () => {
+const deleteTodoItem = async (_id: number) => {
   try {
-    const response = await instant.get("/todolist");
+    const response = await instant.delete(`/todolist/${_id}`);
     return response;
   } catch (error) {
     console.error("deleteTodoItem 에러");
