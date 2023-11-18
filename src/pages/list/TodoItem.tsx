@@ -15,6 +15,7 @@ interface TodoItemProps {
 
 const TodoItem: React.FC<TodoItemProps> = ({ todoData, onClick }) => {
   const [switchChecked, setSwitchChecked] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const changeHandler = () => {
     setSwitchChecked(!switchChecked);
@@ -27,7 +28,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todoData, onClick }) => {
   // };
 
   const HandleClick = () => {
-    naviagte(`/Todoinfo/${todoData._id}`);
+    navigate(`/Todoinfo/${todoData._id}`);
   };
 
   return (

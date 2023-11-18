@@ -15,10 +15,9 @@ import "./TodoInfo.css";
 const TodoInfo: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const params = new URLSearchParams(location.search);
-  const test = useParams();
-  console.log(test);
-  const _id = params.get("_id");
+  // const params = new URLSearchParams(location.search);
+  const { id } = useParams();
+  // const _id = params.get("_id");
 
   const [todoData, setTodoData] = useState({
     title: "",
@@ -26,32 +25,20 @@ const TodoInfo: React.FC = () => {
     deadline: "",
     important: false,
   });
-  const [isImportant, setIsImportant] = useState("");
 
+  const [todoDetailData, setTodoDetailData] = useState<TodoItem>();
+  const [isImportant, setIsImportant] = useState("");
   useEffect(() => {
     const getDetailTodo = async () => {
-      const response = await getTodoItem(_id);
-
-      const getDataItem = response!.data.item;
-
-      setTodoData({
-        title: getDataItem.title,
-        content: getDataItem.content,
-        deadline: getDataItem.deadline,
-        important: getDataItem.important,
-      });
-
-      setIsImportant(
-        getDataItem.important ? "var(--star-color)" : "var(--gray-color)"
-      );
+      const res = await getTodoItem(id);
+      setTodoDetailData(res?.data.item);
     };
-
     getDetailTodo();
-  }, [_id]);
+  }, [id]);
 
   const deleteDetailTodo = async () => {
     if (confirm("삭제하시겠습니까?")) {
-      const response = await axios.delete(`${BASE_URL}/${_id}`);
+      const response = await axios.delete(`${BASE_URL}/${id}`);
       if (response.data.ok === 1) {
         alert("삭제되었습니다!");
         navigate("/");
@@ -72,10 +59,10 @@ const TodoInfo: React.FC = () => {
       <div id="contents">
         <div id="detail-container">
           <div className="title-box">
-            <h3 id="detail-title">{todoData.title}</h3>
+            <h3 id="detail-title">{todoDetailData?.title}</h3>
           </div>
           <div className="content-box">
-            <p id="detail-content">{todoData.content}</p>
+            <p id="detail-content">{todoDetailData?.content}</p>
           </div>
           <div className="deadline-box">
             <label
@@ -84,7 +71,7 @@ const TodoInfo: React.FC = () => {
             >
               완료날짜
             </label>
-            <p id="detail-deadline">{todoData.deadline}</p>
+            <p id="detail-deadline">{todoDetailData?.deadline}</p>
           </div>
           <div className="important-box">
             <label htmlFor="input-important" className="detail-label">

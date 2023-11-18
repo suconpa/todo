@@ -39,7 +39,7 @@ const postTodoItem = async (body: Body) => {
 };
 
 //할일 상세 조회하기
-const getTodoItem = async (_id: string | null) => {
+const getTodoItem = async (_id: string | null | undefined) => {
   try {
     const response = await instant.get(`/todolist/${_id}`);
     return response;
