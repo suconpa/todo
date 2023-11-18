@@ -19,7 +19,6 @@ const TodoItem: React.FC<TodoItemProps> = ({ todoData, onClick }) => {
 
   const changeHandler = () => {
     setSwitchChecked(!switchChecked);
-    console.log(!switchChecked);
   };
 
   // const deleteHandler = () => {
@@ -30,11 +29,14 @@ const TodoItem: React.FC<TodoItemProps> = ({ todoData, onClick }) => {
   const HandleClick = () => {
     navigate(`/Todoinfo/${todoData._id}`);
   };
-
   return (
     <>
       <div>
-        <Switch color="warning" defaultChecked onChange={changeHandler} />
+        <Switch
+          color="warning"
+          defaultChecked={todoData.important}
+          onChange={changeHandler}
+        />
         <FormControlLabel control={<Checkbox defaultChecked />} />
         <button onClick={HandleClick}>{todoData.title}</button>
         <ButtonSu color="red" children={"삭제하기"} onClick={onClick} />

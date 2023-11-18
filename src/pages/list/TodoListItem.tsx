@@ -10,7 +10,6 @@ const TodoListItem: React.FC = () => {
     async function todoData() {
       const response = await getTodoList();
       setTodoItem(response!.data.items);
-      console.log(response, "부모");
     }
 
     todoData();

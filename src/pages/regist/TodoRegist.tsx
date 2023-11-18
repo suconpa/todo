@@ -199,7 +199,6 @@ const TodoRegist: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     const body = {
       title: inputTitle,
       content: textareaContent,
@@ -281,7 +280,6 @@ const TodoRegist: React.FC = () => {
                 className="regist-register-input"
                 name="input-important"
               />
-              import useStore from '../../store/todoStore';
               <span className="regist-check-true"></span>
             </label>
           </div>

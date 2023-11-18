@@ -13,24 +13,14 @@ import { getTodoItem } from "../../api/useFetch";
 import "./TodoInfo.css";
 
 const TodoInfo: React.FC = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  // const params = new URLSearchParams(location.search);
   const { id } = useParams();
-  // const _id = params.get("_id");
-
-  const [todoData, setTodoData] = useState({
-    title: "",
-    content: "",
-    deadline: "",
-    important: false,
-  });
 
   const [todoDetailData, setTodoDetailData] = useState<TodoItem>();
-  const [isImportant, setIsImportant] = useState("");
   useEffect(() => {
     const getDetailTodo = async () => {
       const res = await getTodoItem(id);
+
       setTodoDetailData(res?.data.item);
     };
     getDetailTodo();
@@ -45,7 +35,8 @@ const TodoInfo: React.FC = () => {
       }
     }
   };
-
+  //     var(--star-color);
+  //var(--gray-color);
   return (
     <>
       <button
@@ -77,7 +68,13 @@ const TodoInfo: React.FC = () => {
             <label htmlFor="input-important" className="detail-label">
               중요
               <span id="detail-important">
-                <FontAwesomeIcon icon={faStar} className="important" />
+                <FontAwesomeIcon
+                  icon={faStar}
+                  className="important"
+                  style={{
+                    color: `${todoDetailData?.important ? "orange" : "gray"}`,
+                  }}
+                />
               </span>
             </label>
           </div>
